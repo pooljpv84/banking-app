@@ -1,0 +1,35 @@
+[
+  {
+    "fecha": "10/02/2025",
+    "cliente": "Marianela Montalvo",
+    "numeroCuenta": "225487",
+    "tipo": "CORRIENTE",
+    "saldoInicial": 100,
+    "estado": true,
+    "movimiento": 600,
+    "saldoDisponible": 700,
+    "tipoMovimiento": "DEPOSITO"
+  },
+  {
+    "fecha": "10/02/2025",
+    "cliente": "Marianela Montalvo",
+    "numeroCuenta": "496825",
+    "tipo": "AHORRO",
+    "saldoInicial": 540,
+    "estado": true,
+    "movimiento": -540,
+    "saldoDisponible": 0,
+    "tipoMovimiento": "RETIRO"
+  },
+  {
+    "fecha": "10/02/2025",
+    "cliente": "Marianela Montalvo",
+    "numeroCuenta": "496825",
+    "tipo": "AHORRO",
+    "saldoInicial": 540,
+    "estado": true,
+    "movimiento": 10,
+    "saldoDisponible": 10,
+    "tipoMovimiento": "DEPOSITO"
+  }
+]

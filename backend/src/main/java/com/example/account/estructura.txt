@@ -1,0 +1,24 @@
+Listado de rutas de carpetas
+El n£mero de serie del volumen es A2A9-D4EE
+
+Account
+|   AccountApplication.java
+|   estructura.txt
+|   
++---BDD
+|       DatabaseConfig.java
+|       DataSourceFactory.java
+|       
++---Controller
+|       ClienteController.java
+|       
++---DAO
+|       ClienteRepository.java
+|       DAOCliente.java
+|       
++---DTO
+|       DTOCliente.java
+|       
+\---Service
+        ClienteService.java
+        
