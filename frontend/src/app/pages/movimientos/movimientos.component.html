@@ -1,0 +1,64 @@
+<div class="container">
+  <h2>Movimientos</h2>
+  <br/>
+
+  <div class="d-flex justify-content-between align-items-center">
+    <button class="btn btn-warning text-primary" (click)="abrirModal()">Nuevo Movimiento</button>
+  </div>
+
+  <table class="table table-bordered mt-3">
+    <thead>
+    <tr class="table-warning text-dark">
+      <th>Numero Cuenta</th>
+      <th>Tipo</th>
+      <th>Saldo Inicial</th>
+      <th>Estado</th>
+      <th>Movimiento</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let movimiento of movimientos">
+      <td>{{ movimiento.numeroCuenta }}</td>
+      <td>{{ movimiento.tipoCuenta }}</td>
+      <td>{{ movimiento.saldoInicial }}</td>
+      <td>{{ movimiento.estado ? 'Activo' : 'Inactivo' }}</td>
+      <td>{{ movimiento.movimiento }}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Modal para Nuevo Movimiento -->
+<div class="modal fade" id="nuevoMovimientoModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalLabel">Nuevo Movimiento</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <form #movimientoForm="ngForm">
+          <div class="mb-3">
+            <label class="form-label">Número de Cuenta *</label>
+            <input type="text" class="form-control" [(ngModel)]="nuevoMovimiento.numeroCuenta" name="numeroCuenta" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Tipo de Movimiento *</label>
+            <select class="form-control" [(ngModel)]="nuevoMovimiento.tipoMovimiento" name="tipoMovimiento" required>
+              <option value="DEPOSITO">Depósito</option>
+              <option value="RETIRO">Retiro</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Valor *</label>
+            <input type="number" class="form-control" [(ngModel)]="nuevoMovimiento.valor" name="valor" required>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" (click)="guardarMovimiento(movimientoForm)">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>

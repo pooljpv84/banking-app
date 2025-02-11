@@ -1,0 +1,155 @@
+<div class="container">
+  <h2>Clientes</h2>
+  <br/>
+
+  <div class="d-flex justify-content-between align-items-center">
+    <div class="search-container"></div>
+    <button class="btn btn-warning text-dark" (click)="abrirModal()">NUEVO</button>
+  </div>
+
+  <table class="table table-bordered mt-3">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nombre</th>
+      <th>Identificación</th>
+      <th>Teléfono</th>
+      <th>Edad</th>
+      <th>Género</th>
+      <th>Estado</th>
+      <th>Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let cliente of clientes">
+      <td>{{ cliente.id }}</td>
+      <td>{{ cliente.persona.nombre }}</td>
+      <td>{{ cliente.persona.identificacion }}</td>
+      <td>{{ cliente.persona.telefono }}</td>
+      <td>{{ cliente.edad }}</td>
+      <td>{{ cliente.genero }}</td>
+      <td>{{ cliente.estado ? 'Activo' : 'Inactivo' }}</td>
+      <td>
+        <button class="btn btn-success btn-sm" (click)="abrirModalEditar(cliente)">Editar</button>
+        <button class="btn btn-danger btn-sm" (click)="eliminarCliente(cliente.id)">Eliminar</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Modal para Nuevo Cliente -->
+<div class="modal fade" id="nuevoClienteModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalLabel">Nuevo Cliente</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form #clienteForm="ngForm">
+          <div class="mb-3">
+            <label class="form-label">Nombre *</label>
+            <input type="text" class="form-control" [(ngModel)]="nuevoCliente.persona.nombre" name="nombre" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Identificación *</label>
+            <input type="text" class="form-control" [(ngModel)]="nuevoCliente.persona.identificacion"
+                   name="identificacion" required minlength="10" maxlength="10">
+            <small class="text-danger">10 dígitos</small>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Dirección</label>
+            <input type="text" class="form-control" [(ngModel)]="nuevoCliente.persona.direccion" name="direccion">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Teléfono *</label>
+            <input type="text" class="form-control" [(ngModel)]="nuevoCliente.persona.telefono" name="telefono" required
+                   minlength="9" maxlength="9">
+            <small class="text-danger">9 dígitos</small>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Edad *</label>
+            <input type="number" class="form-control" [(ngModel)]="nuevoCliente.edad" name="edad" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Género *</label>
+            <select class="form-control" [(ngModel)]="nuevoCliente.genero" name="genero" required>
+              <option value="Masculino">Masculino</option>
+              <option value="Femenino">Femenino</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Contraseña *</label>
+            <input type="password" class="form-control" [(ngModel)]="nuevoCliente.password" name="password" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Estado</label>
+            <select class="form-control" [(ngModel)]="nuevoCliente.estado" name="estado">
+              <option [value]="true">Activo</option>
+              <option [value]="false">Inactivo</option>
+            </select>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" (click)="guardarCliente(clienteForm)">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal para Editar Cliente -->
+<div class="modal fade" id="editarClienteModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Editar Cliente</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body" *ngIf="clienteSeleccionado">
+        <form #editForm="ngForm">
+          <div class="mb-3">
+            <label class="form-label">Nombre *</label>
+            <input type="text" class="form-control" [(ngModel)]="clienteSeleccionado.persona.nombre" name="nombre"
+                   required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Identificación *</label>
+            <input type="text" class="form-control" [(ngModel)]="clienteSeleccionado.persona.identificacion"
+                   name="identificacion" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Teléfono *</label>
+            <input type="text" class="form-control" [(ngModel)]="clienteSeleccionado.persona.telefono" name="telefono"
+                   required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Edad *</label>
+            <input type="number" class="form-control" [(ngModel)]="clienteSeleccionado.edad" name="edad" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Género *</label>
+            <select class="form-control" [(ngModel)]="clienteSeleccionado.genero" name="genero" required>
+              <option value="Masculino">Masculino</option>
+              <option value="Femenino">Femenino</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Estado</label>
+            <select class="form-control" [(ngModel)]="clienteSeleccionado.estado" name="estado">
+              <option [value]="true">Activo</option>
+              <option [value]="false">Inactivo</option>
+            </select>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button class="btn btn-primary" (click)="actualizarCliente()">Guardar Cambios</button>
+      </div>
+    </div>
+  </div>
+</div>
+

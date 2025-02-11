@@ -1,0 +1,9 @@
+.table-warning th {
+  background-color: #ffcc80;
+  text-align: center;
+}
+
+.text-danger {
+  color: red;
+  font-weight: bold;
+}
