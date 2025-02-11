@@ -11,12 +11,12 @@ Este proyecto contiene un **backend en Spring Boot**, un **frontend en Angular**
 ## 📦 Estructura
 ```
 global/
-│── backend/         # Código del backend en Spring Boot
-│── frontend/        # Código del frontend en Angular
-│── db-init/         # Archivos SQL para inicializar la base de datos
-│── endPoints.json   # Archivo para ver los endPoints en Postman
-│── reporte.json     # Ejemplo del reporte en JSON
-│── reporte.pdf      # Ejemplo del reporte en PDF
+│── backend/                    # Código del backend en Spring Boot
+│── frontend/                   # Código del frontend en Angular
+│── db-init/BaseDatos.sql       # Archivo SQL para inicializar la base de datos
+│── endPoints.json              # Archivo para ver los endPoints en Postman
+│── reporte.json                # Ejemplo del reporte en JSON
+│── reporte.pdf                 # Ejemplo del reporte en PDF
 │── docker-compose.yml
 │── .gitignore
 │── README.md
